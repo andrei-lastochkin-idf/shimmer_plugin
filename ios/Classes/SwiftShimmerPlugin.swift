@@ -3,9 +3,8 @@ import UIKit
 
 public class SwiftShimmerPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "shimmer_plugin", binaryMessenger: registrar.messenger())
-    let instance = SwiftShimmerPlugin()
-    registrar.addMethodCallDelegate(instance, channel: channel)
+        let factory = ShimmerViewFactory(messenger: registrar.messenger())
+        registrar.register(factory, withId: "shimmerNative")
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
